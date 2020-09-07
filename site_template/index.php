@@ -1,82 +1,56 @@
-<!DOCTYPE HTML>
+<?php include("topbit.php");
 
-<html lang="en">
-    
-<?php
-    
-    session_start(); // to alow varible transfer between pages...
-    include("config.php");
-    
-    //connect to database...
-    $dbconnect=mysqli_connect(DB_HOST,DB_USERNAME,DB_PASSWORD,DB_NAME);
-    
-    if(mysqli_connect_errno()) {
-        echo "Connection failed:".mysqli_connect_error();
-        exit;
-    }
-    
-    ?>
-    
-<head>
-    <meta charset="utf-8">
-    <meta name="description" content="games, apps, ">
-    <meta name="GTT" content="Game / App Database">
-    <meta name="keywords" content="games, apps, ratings">
-    
-    <title>Game Database</title>
+    $find_sql = "SELECT * FROM `l2_prac_game_details`";
+    $find_query = mysqli_query($dbconnect, $find_sql);
+    $find_rs = mysqli_fetch_assoc($find_query);
+    $count = mysqli_num_rows($find_query);
 
-    <!-- for multiple fonts change | to %7c * no spaces*  -->
-    <link href="https://fonts.googleapis.com/css?family=Lato%7cUbuntu" rel="stylesheet">  
-
-    <link rel="stylesheet" href="css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/data_style.css">    <!-- custom style sheet -->
-
-    
-</head>
-
-<body>
-    
-    <p class="message">Eek!  Your browser does not support grid.  Please upgrade your system.</p>
-        
-    <div class="wrapper">
-    
-        <!-- logo / small image goes here -->
-        <div class="box logo">
-            <a href="index.php"><img src="images/logo.png" width="261" height="150" alt="Dice" /></a>
-        </div> <!-- / logo -->
-        
-        <div class="box banner">
-            <h1>Games Database</h1>        
-        </div> <!-- / banner -->
+?>
                        
-            
         <div class="box main">
-            <h2>Welcome</h2>
+            <h2>All Results</h2>
             
             
-            <p>
-                Put link to original dataset here
-            </p>
+            <?php
             
-
-            
-        </div> <!-- / main -->
-        
-        <div class="box side">
-           
-           <h2>Search Area</h2>
-           
-           <p>This is where the search area goes
-
-            
-        </div> <!-- / side bar -->
-        
-        <div class="box footer">
-            CC GTT 20XX
-        </div> <!-- / footer -->
+            if($count < 1) {
                 
-        
-    </div> <!-- / wrapper -->
-    
+                ?>
             
-</body>
+            <div class ="error">
+            
+            Sorry! There are no results that match your search.Please use the search box in the side bar to try again.
+            
+            </div>  <!-- end error -->
+            <?php
+            }
+            
+            else{
+                do 
+                {
+                    
+                
+                     ?>
+            
+            <!-- Results go here -->
+            <div class="results">
+                You have results!
+            </div>  <!-- / results -->
+             <br /   
+             <?php   
+                
+                
+                } // endresults 'do'
+                
+                while
+                    ($find_rs=mysqli_fetch_assoc($find_query));
+            
+            } // end else 
+            
+            ?>
+
+
+
+            </div> <!-- / main -->
+        
+ <?php include("bottombit.php") ?>
