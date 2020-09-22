@@ -51,7 +51,7 @@
                     </div>  <!-- / Title -->
                     
                     <?php
-                        if($find_rs['Subtitle '] != "") 
+                        if($find_rs['Subtitle'] != "") 
                         
                         {
                             
@@ -60,7 +60,7 @@
                     
                        &nbsp; &nbsp; | &nbsp; &nbsp;
                         
-                        <?php echo $find_rs[''] ?>
+                        <?php echo $find_rs['Subtitle'] ?>
                     
                     </div> <!-- / Subtitle -->
                     
@@ -73,30 +73,82 @@
                 </div>   
                 <!-- / Heading and subtitle -->
                 
+                <!-- Rating Area -->
+                
+                <div class="flex-container">
+                
+                    <!-- Partial stars Original Source:https://codepe.io/Bluetidepro/pen/GkpEa -->
+                    <div class="star-ratings-sprite">
+                        <span style="width:<?php echo $find_rs['User Rating'] / 5 * 100; ?>%" class="star-ratings-sprite-rating"></span>
+                    
+                    </div> <!-- / star rating div -->
+                    
+                    <div class="actual-rating">
+                        (<?php echo $find_rs['User Rating']?> based on <?php echo number_format($find_rs['Rating Count']) ?> ratings)
+                        
+                    </div> <!-- / text rating div -->
+                    
+                </div> <!-- / ratings felxbox -->
+                
+                <!--- / Rating Area -->
+                
+                <!-- price -->
+                
+                <?php 
+                
+                    if($find_rs['Price'] == 0) {
+                        ?>
+                    <p>
+                        Free 
+                        <?php
+                            if($find_rs['In App'] == 1) 
+                            {
+                                ?>
+                                    (In App Purchase)
+                                <?php
+                                    
+                            }   //end In App if
+                        ?>
+                   
+                </p>
+                
+                <?php
+                } // end price if 
+                
+                else {
+                    
+                    ?>
+                <b>Price:</b> $<?php echo $find_rs['Price'] ?>
+                
+                <?php
+                
+                }   // end price else (diplay coast)
+                
+            ?>
+                
+            
+                <!--- / price -->
+            
             <p>
-                <b>Genre</b>:
-                <?php echo $find_rs['Genre'] ?>
-                
-                <br />
-                
-                <b>Developer</b>:
-                <?php echo $find_rs['DevName'] ?>
-                
-                <br />
-                <b>Rating</b>: <?php echo $find_rs['User Rating'] ?>(based on <?php echo $find_rs['Rating Count'] ?> votes)
+                <!-- Developer, Genre and Age... -->
+                <b>Developer:</b>  <?php echo $find_rs['DeveloperID'] ?><br />
+                <b>Genre:</b>  <?php echo $find_rs['GenreID'] ?><br />
+                suitable for ages <b> <?php echo $find_rs['Age'] ?></b> and up 
                 
             </p>
-            <hr /> 
-                <?php echo $find_rs['Description'] ?>
-            
-            
+                
+            <p>
+                <i><?php echo $find_rs['Description'] ?></i>
+                
+            </p>
+           
             </div>  <!-- / results -->
              
             <br />   
             
             <?php   
                 
-                    } // endresults 'do'
+                    } // end results 'do'
                 
                 while
                     ($find_rs=mysqli_fetch_assoc($find_query));
