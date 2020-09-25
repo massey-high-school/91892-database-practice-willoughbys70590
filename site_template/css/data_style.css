@@ -185,7 +185,7 @@ a.side:hover {color:#8a1737; }
 }
 
 .submit {
-    font-family: FrontAwesome, 'Helvetica Neue' , Helvetica Arial, sans-serif;
+    font-family: FontAwesome, 'Helvetica Neue' , Helvetica Arial, sans-serif;
     position:relative;
     width: 45px;
     left:-1px;
@@ -195,6 +195,21 @@ a.side:hover {color:#8a1737; }
     border-radius: 0 5px 5px 0;
 }
 
+input[type="submit"]:hover {
+    background-color: #000;
+}
+
+input.search[type=text], select {
+    width: 200px
+}
+
+input {
+    height:40px;
+    padding: 10;
+    display: inline-block;
+    border:1px solid #ccc;
+    box-sizing: border-box;
+}
 
 
 
